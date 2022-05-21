@@ -1,4 +1,4 @@
-module json_check
+module github.com/joker1222/json_check
 
 go 1.16
 
