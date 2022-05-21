@@ -1,4 +1,4 @@
-package jsonCheck
+package json_check
 
 import (
 	"fmt"
