@@ -24,7 +24,7 @@ var ruleStr1 =
 		"leaf":{
 			"_Type":"Number",
 			"_Required":true
-        }
+        	}
 	}
 }
 `
@@ -37,7 +37,7 @@ var ruleStr2 =
 		"leaf":{
 			"_Type":"String",
 			"_Required":true
-        }
+        	}
 	}
 }
 `
