@@ -71,4 +71,10 @@ func main()  {
 	}
 }
 ```
-
+```
+<JsonKey:"root"> <_Type:Object>  checkType successful
+<JsonKey:"root.leaf"> <_Type:Number>  checkType successful
+---------------------------
+<JsonKey:"root"> <_Type:Object>  checkType successful
+<JsonKey:"root.leaf"> type error  , your valueType is <Number> ,  it should be <String>
+```
