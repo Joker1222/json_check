@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GOROOT" path="c:\go" />
+  <component name="GoLibraries">
+    <option name="urls">
+      <list>
+        <option value="file://D:/Goland/Work/F_Robot" />
+        <option value="file://D:/Goland/Work/RobotFrame" />
+        <option value="file://D:/Goland/Work/TestServer" />
+        <option value="file://D:/Goland/Work/Y_Robot" />
+      </list>
+    </option>
+  </component>
+</project>
