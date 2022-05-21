@@ -9,7 +9,7 @@ $ go get github.com/Joker1222/JsonCheck
 ```go
 package main
 
-import "github.com/Joker1222/JsonCheck"
+import "github.com/Joker1222/jsonCheck"
 
 
 ```
