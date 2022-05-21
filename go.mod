@@ -1,4 +1,4 @@
-module JsonCheck
+module jsonCheck
 
 go 1.16
 
