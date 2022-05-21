@@ -72,7 +72,7 @@ func main()  {
 }
 ```
 ```
-output ===>:
+$ go run
 <JsonKey:"root"> <_Type:Object>  checkType successful
 <JsonKey:"root.leaf"> <_Type:Number>  checkType successful
 ---------------------------
