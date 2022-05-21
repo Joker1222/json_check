@@ -31,7 +31,7 @@ var goTypeToJsonType = map[string]string{
 | Array   | []interface{}         |
 */
 
-func CheckType(v interface{},k ,jsonType string) error {
+func checkType(v interface{},k ,jsonType string) error {
 	switch jsonType{
 	case  "Object":
 		if _,ok:=v.(map[string]interface{});!ok{
@@ -124,7 +124,8 @@ func FoundStringArr(k string,l []string) bool{
 	return false
 }
 
-func CheckJsonConfig(rule []Node,conf map[string]interface{}) []error {
+func Check(ruleJson ,conf map[string]interface{}) []error {
+	rule:=parseRule(ruleJson)
 	noRequireds:=map[string]struct{}{}
 	requiredErrList:=make([]string,0)
 	errList:=make([]error,0)
@@ -166,7 +167,7 @@ func CheckJsonConfig(rule []Node,conf map[string]interface{}) []error {
 			}
 		}else{
 			for _,checkNode:=range checkList{
-				if err:=CheckType(checkNode.value,checkNode.keyStr,checkNode.jsonType);err!=nil{
+				if err:=checkType(checkNode.value,checkNode.keyStr,checkNode.jsonType);err!=nil{
 					errList=append(errList,err)
 				}
 			}
