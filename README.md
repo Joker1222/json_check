@@ -30,6 +30,8 @@ $ go get github.com/Joker1222/json_check
 ```
 
 # Example
+> 完整示例请参考example目录
+
 ```go
 package main
 
