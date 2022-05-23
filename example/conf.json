@@ -1,0 +1,11 @@
+{
+  "root": {
+    "leaf1": 1,
+    "leaf2": "hello",
+    "leaf3": "world",
+    "leaf4": {
+      "leaf4-1": "hi",
+      "leaf4-2": 42
+    }
+  }
+}

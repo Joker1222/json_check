@@ -1,0 +1,33 @@
+{
+  "root": {
+    "_Type": "Object",
+    "_Required": true,
+    "leaf1": {
+      "_Type": "Number",
+      "_Required": true
+    },
+    "leaf2": {
+      "_Type": "String",
+      "_Required": false,
+      "_Default": "hello"
+    },
+    "leaf3": {
+      "_Type": "String",
+      "_Required": true,
+      "_Range": ["hello","world"]
+    },
+    "leaf4": {
+      "_Type": "Object",
+      "_Required": true,
+      "leaf4-1": {
+        "_Type": "String",
+        "_Required": true
+      },
+      "leaf4-2": {
+        "_Type": "Number",
+        "_Required": true,
+        "_Range": [1,2]
+      }
+    }
+  }
+}
