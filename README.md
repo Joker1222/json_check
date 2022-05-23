@@ -8,9 +8,13 @@
 - 不允许出现自定义的Object类型
 
 2.规则用法
-|规则参数|说明|
-|-|-|
-|"_Type"|字段类型(Object/Array/Number/String/Boolean)|
+|规则参数|说明|示例|
+|-|-|-|
+|_Type|字段类型(Object/Array/Number/String/Boolean)|Object|
+|_Required|是否必填(true/false)|true|
+|_Default|_Required为false时，可能需要默认值(如果是非必填参数且被检测配置没配，会自动加入该值)|
+|_Element|数组参数的元素类型，是一个Object，配置方式与其他规则|{"_Type":"Number","_Required":true}|
+|_Range|用于规定该参数的值在一个特定范围内|["HELLO","WORLD"]|
 
 # Install
 ```bash
