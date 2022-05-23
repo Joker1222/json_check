@@ -13,7 +13,7 @@
 |_Required|是否必填(true/false)|{"_Type":"Boolean","_Required":true}|
 |_Default|_Required为false时，可能需要默认值(如果是非必填参数且被检测配置没配，会自动加入该值)|{"_Type":"String","_Required":false,"_Default":"hello"}|
 |_Element|数组参数的元素类型，是一个Object，配置方式与其他规则，支持嵌套|{"_Type":"Array","_Required":true,"_Element":{"_Type":"Number","_Required":false,"_Default":9999}}|
-|_Range|用于规定该参数的值在一个特定范围内|{"_Type":"String","_Required":true,"_Range":["HELLO","WORLD"]} //该示例说明值只能是HELLO或WORLD|
+|_Range|用于规定该参数的值在一个特定范围内(仅适用于Object和Array类型不适用)|{"_Type":"String","_Required":true,"_Range":["HELLO","WORLD"]}|
 
 **3.类型说明**
 |JSON类型|Golang类型|
