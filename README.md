@@ -6,10 +6,12 @@
 - 所有配置不允许以'_'开头命名（因为规则配置中需要判断带有'_'的规则参数）
 - 对于数组Array类型，其中的元素类型必须一致，Object元素中的Key也需要一致
 - 不允许出现自定义的Object类型
+
 2.规则用法
 |规则参数|说明|
 |-|-|
 |"_Type"|字段类型(Object/Array/Number/String/Boolean)|
+
 # Install
 ```bash
 $ go get github.com/Joker1222/json_check
