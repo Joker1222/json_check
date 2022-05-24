@@ -9,7 +9,7 @@
 **2.规则用法**
 |规则参数|说明|是否必填|示例|
 |-|-|-|-|
-|_Type|字段类型(Object/Array/Number/String/Boolean)是|{"_Type":"Object","_Required":true}|
+|_Type|字段类型(Object/Array/Number/String/Boolean)|是|{"_Type":"Object","_Required":true}|
 |_Required|是否必填(true/false)|是|{"_Type":"Boolean","_Required":true}|
 |_Default|_Required为false时，可能需要默认值(如果是非必填参数且被检测配置没配，会自动加入该值)|否|{"_Type":"String","_Required":false,"_Default":"hello"}|
 |_Element|数组参数的元素类型，是一个Object，配置方式与其他规则，支持嵌套|否|{"_Type":"Array","_Required":true,"_Element":{"_Type":"Number","_Required":false,"_Default":9999}}|
