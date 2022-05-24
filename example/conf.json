@@ -6,6 +6,17 @@
     "leaf4": {
       "leaf4-1": "hi",
       "leaf4-2": 42
-    }
+    },
+    "leaf5":[1,2,3,4],
+    "leaf6":[
+      {
+        "leafs6-1":161,
+        "leafs6-2":false
+      },
+      {
+        "leafs6-1":261,
+        "leafs6-2":true
+      }
+    ]
   }
 }
