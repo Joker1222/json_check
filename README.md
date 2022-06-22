@@ -1,4 +1,4 @@
-# Overview
+> 一个通用的Json配置规则检查工具
 
 # 使用说明
 
@@ -7,13 +7,13 @@
 - 对于数组Array类型，其中的元素类型必须一致，Object元素中的Key也需要一致
 
 **2.规则用法**
-|规则参数|说明|示例|
-|-|-|-|
-|_Type|字段类型(Object/Array/Number/String/Boolean)|{"_Type":"Object","_Required":true}|
-|_Required|是否必填(true/false)|{"_Type":"Boolean","_Required":true}|
-|_Default|_Required为false时，可能需要默认值(如果是非必填参数且被检测配置没配，会自动加入该值)|{"_Type":"String","_Required":false,"_Default":"hello"}|
-|_Element|数组参数的元素类型，是一个Object，配置方式与其他规则，支持嵌套|{"_Type":"Array","_Required":true,"_Element":{"_Type":"Number","_Required":false,"_Default":9999}}|
-|_Range|用于规定该参数的值在一个特定范围内(仅适用于Object和Array类型不适用)|{"_Type":"String","_Required":true,"_Range":["HELLO","WORLD"]}|
+|规则参数|说明|是否必填|示例|
+|-|-|-|-|
+|_Type|字段类型(Object/Array/Number/String/Boolean)|是|{"_Type":"Object","_Required":true}|
+|_Required|是否必填(true/false)|是|{"_Type":"Boolean","_Required":true}|
+|_Default|_Required为false时，可能需要默认值(如果是非必填参数且被检测配置没配，会自动加入该值)|否|{"_Type":"String","_Required":false,"_Default":"hello"}|
+|_Element|数组参数的元素类型，是一个Object，配置方式与其他规则，支持嵌套|否|{"_Type":"Array","_Required":true,"_Element":{"_Type":"Number","_Required":false,"_Default":9999}}|
+|_Range|用于规定该参数的值在一个特定范围内(仅适用于Object和Array类型不适用)|否|{"_Type":"String","_Required":true,"_Range":["HELLO","WORLD"]}|
 
 **3.类型说明**
 |JSON类型|Golang类型|
@@ -30,6 +30,8 @@ $ go get github.com/Joker1222/json_check
 ```
 
 # Example
+> 完整示例请参考example目录
+
 ```go
 package main
 

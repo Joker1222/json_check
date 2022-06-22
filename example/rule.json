@@ -28,6 +28,24 @@
         "_Required": true,
         "_Range": [1,2]
       }
+    },
+    "leaf5": {
+      "_Type": "Array",
+      "_Required": true,
+      "_Element":{
+          "_Type":"Number",
+          "_Required":true
+      }
+    },
+    "leaf6": {
+      "_Type": "Array",
+      "_Required": true,
+      "_Element":{
+          "_Type":"Object",
+          "_Required":true,
+          "leafs6-1":{"_Type":"Number","_Required":true},
+          "leafs6-2":{"_Type":"Boolean","_Required":true}
+      }
     }
   }
 }
