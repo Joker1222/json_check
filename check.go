@@ -129,6 +129,7 @@ func Check(ruleJson ,conf map[string]interface{}) []error {
 	noRequireds:=map[string]struct{}{}
 	requiredErrList:=make([]string,0)
 	errList:=make([]error,0)
+	skipList:=make(map[string]bool)
 	for _,node:=range rule{
 		var confValue interface{}
 		confValue=conf
@@ -157,7 +158,7 @@ func Check(ruleJson ,conf map[string]interface{}) []error {
 		if !ruleRequired{
 			noRequireds[ruleKeys[len(ruleKeys)-1]]= struct{}{}
 		}
-		checkList,err1,err2:=Recursion(ruleDefault,ruleRange,noRequireds,ruleType,"",ruleKeys,confValue)
+		checkList,err1,err2:=Recursion(ruleDefault,ruleRange,noRequireds,ruleType,"",ruleKeys,confValue,skipList)
 		if err1!=nil || err2!=nil{
 			if err1!=nil{
 				errList=append(errList,err1)
@@ -176,8 +177,11 @@ func Check(ruleJson ,conf map[string]interface{}) []error {
 	return errList
 }
 
-func Recursion(ruleDefault interface{},ruleRange []interface{},noRequired map[string]struct{},jsonType , kstr string ,keys []string,value interface{}) ([]CheckNode,error,error){
+func Recursion(ruleDefault interface{},ruleRange []interface{},noRequired map[string]struct{},jsonType , kstr string ,keys []string,value interface{},skipList map[string]bool) ([]CheckNode,error,error){
 	for i,k:=range keys{
+		if _,ok:=skipList[k];ok{
+			return nil,nil,nil
+		}
 		if k == "_Element"{
 			checkList:=make([]CheckNode,0)
 			for j,index:=range value.([]interface{}){
@@ -188,7 +192,7 @@ func Recursion(ruleDefault interface{},ruleRange []interface{},noRequired map[st
 						value:    index,
 					})
 				} else {
-					cl,err1,err2:=Recursion(ruleDefault,ruleRange,noRequired,jsonType,fmt.Sprintf("%v[%v].",kstr[:len(kstr)-1],j),keys[i+1:],index)
+					cl,err1,err2:=Recursion(ruleDefault,ruleRange,noRequired,jsonType,fmt.Sprintf("%v[%v].",kstr[:len(kstr)-1],j),keys[i+1:],index,skipList)
 					if err1 != nil || err2 != nil{
 						return nil,err1,err2
 					} else{
@@ -201,11 +205,13 @@ func Recursion(ruleDefault interface{},ruleRange []interface{},noRequired map[st
 			kstr+=k+"."
 			v,vok:=value.(map[string]interface{})[k]
 			if _,ok:=noRequired[k];ok && !vok {
+				skipList[k]=true
 				//如果不是必填字段，并且用户没配，则不继续向下校验，直接返回空
-				fmt.Printf("<JsonKey:%v> this key is no required, and user not config , skip check ... \n",kstr[:len(kstr)-1])
+				fmt.Printf("<JsonKey:%v> this key is no required, and user not config , skip check <%v> ... \n",kstr[:len(kstr)-1],kstr+keys[len(keys)-1])
 				if ruleDefault != nil{ //此处判断下规则中是否给选填参数提供了默认值，如果没有，后续会删除这个key，否则将默认值加上
+					//还需要判断是否前置节点没有配置？
 					value.(map[string]interface{})[k]= ruleDefault
-					fmt.Printf("<JsonKey:%v> this key is no required, and user not config , but have default <%v> ... \n",kstr[:len(kstr)-1],ruleDefault)
+					fmt.Printf("<JsonKey:%v> this key is no required, and user not config , but have default <%v:%v> ... \n",kstr[:len(kstr)-1],kstr+keys[len(keys)-1],ruleDefault)
 				}
 				return nil,nil,nil
 			}
