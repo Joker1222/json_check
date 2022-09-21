@@ -210,6 +210,7 @@ func Recursion(ruleDefault interface{},ruleRange []interface{},noRequired map[st
 				fmt.Printf("<JsonKey:%v> this key is no required, and user not config , skip check <%v> ... \n",kstr[:len(kstr)-1],kstr+keys[len(keys)-1])
 				if ruleDefault != nil{ //此处判断下规则中是否给选填参数提供了默认值，如果没有，后续会删除这个key，否则将默认值加上
 					//还需要判断是否前置节点没有配置？
+					delete(skipList,k)
 					value.(map[string]interface{})[k]= ruleDefault
 					fmt.Printf("<JsonKey:%v> this key is no required, and user not config , but have default <%v:%v> ... \n",kstr[:len(kstr)-1],kstr+keys[len(keys)-1],ruleDefault)
 				}
