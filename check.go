@@ -179,7 +179,7 @@ func Check(ruleJson ,conf map[string]interface{}) []error {
 
 func Recursion(ruleDefault interface{},ruleRange []interface{},noRequired map[string]struct{},jsonType , kstr string ,keys []string,value interface{},skipList map[string]bool) ([]CheckNode,error,error){
 	for i,k:=range keys{
-		if _,ok:=skipList[k];ok{
+		if _,ok:=skipList[kstr];ok{
 			return nil,nil,nil
 		}
 		if k == "_Element"{
@@ -203,14 +203,17 @@ func Recursion(ruleDefault interface{},ruleRange []interface{},noRequired map[st
 			return checkList,nil,nil
 		} else {
 			kstr+=k+"."
+			if _,ok:=skipList[kstr];ok{
+				return nil,nil,nil
+			}
 			v,vok:=value.(map[string]interface{})[k]
 			if _,ok:=noRequired[k];ok && !vok {
-				skipList[k]=true
+				skipList[kstr]=true
 				//如果不是必填字段，并且用户没配，则不继续向下校验，直接返回空
 				fmt.Printf("<JsonKey:%v> this key is no required, and user not config , skip check <%v> ... \n",kstr[:len(kstr)-1],kstr+keys[len(keys)-1])
 				if ruleDefault != nil{ //此处判断下规则中是否给选填参数提供了默认值，如果没有，后续会删除这个key，否则将默认值加上
 					//还需要判断是否前置节点没有配置？
-					delete(skipList,k)
+					delete(skipList,kstr)
 					value.(map[string]interface{})[k]= ruleDefault
 					fmt.Printf("<JsonKey:%v> this key is no required, and user not config , but have default <%v:%v> ... \n",kstr[:len(kstr)-1],kstr+keys[len(keys)-1],ruleDefault)
 				}
